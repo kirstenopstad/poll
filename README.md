@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Poll
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### By Kirsten Opstad
 
-## Available Scripts
+#### A web app for simple polling
 
-In the project directory, you can run:
+<!-- #### [Check out the live site](https://kirstenopstad.github.io/local-business/)! -->
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* React
+* JavaScript
+* Bootstrap
+* HTML
+* CSS
+* webpack
+* Node.js
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Description
 
-### `npm test`
+__Prompt__
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create an application that allows a user to complete a quiz or survey. Users should be able to create new quizzes or surveys while other users should have the ability to fill out those surveys. To make this prompt a bit easier, you can have a set number of questions for each quiz or survey — that way, the surveys don't need to be dynamically rendered. (For instance, the form could have fields for response1, response2, and so on.)
 
-### `npm run build`
+### Objectives (MVP)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application should have the following functionality:
+* A user should be able to create, update and delete a survey. All surveys should be stored in the database.
+* A user should be able to fill out and submit surveys. Survey results should be submitted to the database. (A survey result can be associated to a survey by mimicking a one-to-many relationship.)
+* A user should be able to sign up, sign in, and sign out.
+* A user should have their own dashboard which lists the surveys they've created.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+__Further Exploration__
+Bonus: A user should be able to see the combined data on a survey in their dashboard. For instance, if a survey provides a 1-5 rating, return an average rating for all surveys.
+Challenging: Try using a library like D3 to visualize data from surveys. This is only recommended if you have time to spare, interest in data visualization, and are doing one project for the entire course section.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Process 
+1. Create component drawing & basic wireframe
 
-### `npm run eject`
+[![Component Drawing](./src/img/component_diagram.png)](https://www.figma.com/file/q9vYIxueWEQ3z1E21PJE5n/Poll?node-id=2%3A87&t=MJqgU5YfrYwAPySF-1)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[![Component Drawing](./src/img/wireframe.png)](https://www.figma.com/file/q9vYIxueWEQ3z1E21PJE5n/Poll?node-id=2%3A87&t=MJqgU5YfrYwAPySF-1)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Establish Component Hierarchy:
+    * App.js
+      * Header.js 
+      * TakeSurveyControl.js
+        * SurveyList.js
+          * Survey.js
+        * TakeSurvey.js
+      * BuildSurveyControl.js
+        * Dashboard.js
+          * Survey.js
+        * SurveyDetail.js
+          * Result.js
+        * UpdateSurvey.js
+        * CreateSurvey.js
+3. Build Static Components
+4. Add State
+5. Style
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- [x] Screenshots
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Screenshots](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.03bZmDGXaBhBYyxxp3Ls3gHaEA%26pid%3DApi&f=1&ipt=e980d57210242747a51c41421e1f09a6de3b1fdaeaadd297496787bb64e80c88&ipo=images) -->
 
-## Learn More
+<!-- [Link to operational site](http://www.kirstenopstad.github.com/<REPOSITORY NAME>) -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Goals
+1. ✅ Meet MVP
+2. Add combined results (average if rating)
+3. Add visualization with D3
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Setup/Installation Requirements
 
-### Code Splitting
+* Clone this repo to your workspace.
+* Navigate to the top level of the directory.
+* In the root directory of the project, run this command to install all packages listed in the package.json:
+```
+$ npm install
+```
+* Then, to build and serve the project, run: 
+```
+$ npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Known Bugs
 
-### Analyzing the Bundle Size
+* No known bugs. If you find one, please email me at kirsten.opstad@gmail.com with the subject **[_Repo Name_] Bug** and include:
+  * BUG: _A brief description of the bug_
+  * FIX: _Suggestion for solution (if you have one!)_
+  * If you'd like to be credited, please also include your **_github user profile link_**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
+MIT License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Copyright (c) 2023 Kirsten Opstad
 
-### Advanced Configuration
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
