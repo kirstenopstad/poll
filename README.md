@@ -35,13 +35,13 @@ Bonus: A user should be able to see the combined data on a survey in their dashb
 Challenging: Try using a library like D3 to visualize data from surveys. This is only recommended if you have time to spare, interest in data visualization, and are doing one project for the entire course section.
 
 ## Process 
-1. Create component drawing & basic wireframe
+1. ✅ Create component drawing & basic wireframe
 
 [![Component Drawing](./src/img/component_diagram.png)](https://www.figma.com/file/q9vYIxueWEQ3z1E21PJE5n/Poll?node-id=2%3A87&t=MJqgU5YfrYwAPySF-1)
 
 [![Component Drawing](./src/img/wireframe.png)](https://www.figma.com/file/q9vYIxueWEQ3z1E21PJE5n/Poll?node-id=2%3A87&t=MJqgU5YfrYwAPySF-1)
 
-2. Establish Component Hierarchy:
+2. ✅ Establish Component Hierarchy:
     * App.js
       * Header.js 
       * TakeSurveyControl.js
@@ -66,7 +66,7 @@ Challenging: Try using a library like D3 to visualize data from surveys. This is
 <!-- [Link to operational site](http://www.kirstenopstad.github.com/<REPOSITORY NAME>) -->
 
 ### Goals
-1. ✅ Meet MVP
+1. Meet MVP
 2. Add combined results (average if rating)
 3. Add visualization with D3
 
