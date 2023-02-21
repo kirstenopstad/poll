@@ -2,7 +2,7 @@ import React from "react";
 import UserSurvey from "./UserSurvey";
 import PropTypes from "prop-types"
 
-const Dashboard = ({surveyList, onSurveySelect}) => {
+const Dashboard = ({surveyList, onSurveySelect, onCreateClick}) => {
   // filter where author is KO
   const filteredList = surveyList.filter(survey => survey.author === "ko");
   return(
@@ -14,12 +14,14 @@ const Dashboard = ({surveyList, onSurveySelect}) => {
             whenClicked={onSurveySelect}
             survey={survey}/>
       )}
+      <button onClick={onCreateClick}>Create Survey</button>
     </React.Fragment>
   );
 }
 Dashboard.propTypes = {
   surveyList: PropTypes.array,
-  onSurveySelect: PropTypes.func
+  onSurveySelect: PropTypes.func,
+  onCreateClick: PropTypes.func
 }
 
 export default Dashboard;
