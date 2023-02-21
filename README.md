@@ -55,7 +55,7 @@ Challenging: Try using a library like D3 to visualize data from surveys. This is
           * Result.js
         * UpdateSurvey.js
         * CreateSurvey.js
-3. Build Static Components
+3. ✅ Build Static Components
 4. Add State
 5. Style
 
