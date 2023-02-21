@@ -2,8 +2,8 @@ import React from "react";
 import Survey from "./Survey";
 import PropTypes from "prop-types"
 
-const SurveyDetail = ({selectedSurvey, onUpdateClick}) => {
-  const { name, description, options } = selectedSurvey
+const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
+  const { name, description, options, id } = selectedSurvey
   return(
     <React.Fragment>
       <h3>{name}</h3>
@@ -16,13 +16,15 @@ const SurveyDetail = ({selectedSurvey, onUpdateClick}) => {
       </ul>
       <p>eventually results</p>
       <button onClick={onUpdateClick}>Update</button>
+      <button onClick={() => onDeleteClick(id)}>Delete</button>
     </React.Fragment>
   );
 }
 
 SurveyDetail.propTypes = {
   selectedSurvey: PropTypes.object,
-  onUpdateClick: PropTypes.func
+  onUpdateClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
 }
 
 export default SurveyDetail;

@@ -30,13 +30,14 @@ const BuildSurveyControl = ({surveyList}) => {
     setCreatingStatus(true);
   }
 
-  // eventually take new survey as input
+  // CREATE
   const handleCreateForm = (newSurvey) => {
     const newSurveyList = allSurveys.concat(newSurvey);
     setAllSurveys(newSurveyList);
     setCreatingStatus(false);
   }
 
+  // UPDATE
   const handleUpdateSurvey = ( editedSurvey ) => {
     const editedList = allSurveys
       .filter(survey => survey.id === editedSurvey.id)
@@ -44,6 +45,14 @@ const BuildSurveyControl = ({surveyList}) => {
     setAllSurveys(editedList);
     setSelectedSurvey(editedSurvey);
     setEditingStatus(false);
+  }
+
+  // DELETE
+  const handleDeleteSurvey = (id) => {
+    const newSurveyList = allSurveys
+      .filter(survey => survey.id != id);
+    setAllSurveys(newSurveyList);
+    setSelectedSurvey(null);
   }
 
   // conditional rendering
@@ -54,7 +63,10 @@ const BuildSurveyControl = ({surveyList}) => {
   } else if (isEditing) {
     detail = <UpdateSurvey selectedSurvey={selectedSurvey} onSubmitUpdate={handleUpdateSurvey}/>
   } else if (selectedSurvey) {
-    detail = <SurveyDetail selectedSurvey={selectedSurvey} onUpdateClick={handleDisplayUpdateForm}/>
+    detail = <SurveyDetail 
+      selectedSurvey={selectedSurvey} 
+      onUpdateClick={handleDisplayUpdateForm}
+      onDeleteClick={handleDeleteSurvey}/>
   }
 
   return(
