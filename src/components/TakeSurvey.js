@@ -7,6 +7,9 @@ const TakeSurvey = ({survey}) => {
       <h3>{survey.name}</h3>
       <h3>{survey.description}</h3>
       <p>eventually takes user input</p>
+      <form>
+        <button type="submit">Submit</button>
+      </form>
     </React.Fragment>
   );
 }
