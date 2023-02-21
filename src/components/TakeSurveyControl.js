@@ -3,11 +3,16 @@ import SurveyList from "./SurveyList";
 import TakeSurvey from "./TakeSurvey";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import resultSeedData from "../resultSeedData";
+
+// TODO: Add functionality to store results
+// Seed result data
 
 const TakeSurveyControl = ({surveyList}) => {
   // slices of state
   const [takingSurvey, setTakingSurvey] = useState(false);
   const [selectedSurvey, setSelectedSurvey] = useState(null);
+  const [resultList, setResultList] = useState(resultSeedData);
 
   // functions
   const handleSelect = (id) => {
