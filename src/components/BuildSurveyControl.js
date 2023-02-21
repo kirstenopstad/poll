@@ -3,20 +3,20 @@ import Dashboard from "./Dashboard";
 import SurveyDetail from "./SurveyDetail";
 import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
-import PropTypes from "prop-types"
-
-// FEATURE: show create form when button is clicked on dashboard
-// add local state 
-// add conditional rendering
-// add handleDisplayUpdateForm functionality
+import PropTypes from "prop-types";
+// import db from './../firebase'
+// import { collection, addDoc } from "firebase/firestore";
 
 const BuildSurveyControl = ({surveyList}) => {
   // variable state
   const [selectedSurvey, setSelectedSurvey] = useState(null);
   const [isEditing, setEditingStatus] = useState(false);
   const [isCreating, setCreatingStatus] = useState(false);
+  // temporarily use state to test that I can add / update / delete
+  // pass in seedData
+  const [allSurveys, setAllSurveys] = useState(surveyList);
 
-  // functions
+  // functions 
   const handleDetailSelection = (id) => {
     const selected = surveyList.filter(survey => survey.id === id)[0];
     setSelectedSurvey(selected);
@@ -31,7 +31,9 @@ const BuildSurveyControl = ({surveyList}) => {
   }
 
   // eventually take new survey as input
-  const handleCreateForm = () => {
+  const handleCreateForm = (newSurvey) => {
+    const newSurveyList = allSurveys.concat(newSurvey);
+    setAllSurveys(newSurveyList);
     setCreatingStatus(false);
   }
 
@@ -49,7 +51,7 @@ const BuildSurveyControl = ({surveyList}) => {
   return(
     <React.Fragment>
       <h1>BuildSurveyControl</h1>
-      <Dashboard surveyList={surveyList} onSurveySelect={handleDetailSelection} onCreateClick={handleDisplayCreateForm}/>
+      <Dashboard surveyList={allSurveys} onSurveySelect={handleDetailSelection} onCreateClick={handleDisplayCreateForm}/>
       {detail}
     </React.Fragment>
   );
