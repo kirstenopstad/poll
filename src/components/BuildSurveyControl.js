@@ -37,13 +37,22 @@ const BuildSurveyControl = ({surveyList}) => {
     setCreatingStatus(false);
   }
 
+  const handleUpdateSurvey = ( editedSurvey ) => {
+    const editedList = allSurveys
+      .filter(survey => survey.id === editedSurvey.id)
+      .concat(editedSurvey);
+    setAllSurveys(editedList);
+    setSelectedSurvey(editedSurvey);
+    setEditingStatus(false);
+  }
+
   // conditional rendering
   let detail = null;
 
   if (isCreating) {
     detail = <CreateSurvey onSubmitClick={handleCreateForm}/>
   } else if (isEditing) {
-    detail = <UpdateSurvey selectedSurvey={selectedSurvey}/>
+    detail = <UpdateSurvey selectedSurvey={selectedSurvey} onSubmitUpdate={handleUpdateSurvey}/>
   } else if (selectedSurvey) {
     detail = <SurveyDetail selectedSurvey={selectedSurvey} onUpdateClick={handleDisplayUpdateForm}/>
   }
