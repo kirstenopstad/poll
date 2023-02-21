@@ -5,33 +5,35 @@ import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
 import PropTypes from "prop-types"
 
-// FEATURE: show survey detail when clicked
-// add local state 
-// add conditional rendering
-// add handleDetailSelection functionality
-
 const BuildSurveyControl = ({surveyList}) => {
   // variable state
   const [selectedSurvey, setSelectedSurvey] = useState(null);
+  const [isEditing, setEditingStatus] = useState(false);
 
   // functions
   const handleDetailSelection = (id) => {
     const selected = surveyList.filter(survey => survey.id === id)[0];
     setSelectedSurvey(selected);
   }
+  
+  const handleDisplayUpdateForm = () => {
+    setEditingStatus(true);
+  }
 
   // conditional rendering
   let detail = null;
 
-  if (selectedSurvey) {
-    detail = <SurveyDetail selectedSurvey={selectedSurvey}/>
+  if (isEditing) {
+    detail = <UpdateSurvey selectedSurvey={selectedSurvey}/>
+  } else if (selectedSurvey) {
+    detail = <SurveyDetail selectedSurvey={selectedSurvey} onUpdateClick={handleDisplayUpdateForm}/>
   }
+
   return(
     <React.Fragment>
       <h1>BuildSurveyControl</h1>
       <Dashboard surveyList={surveyList} onSurveySelect={handleDetailSelection}/>
       {detail}
-      <UpdateSurvey />
       <CreateSurvey />
     </React.Fragment>
   );
