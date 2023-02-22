@@ -3,6 +3,7 @@ import Survey from "./Survey";
 import PropTypes from 'prop-types'
 
 const SurveyList = ({onSurveySelect, surveyList}) => {
+
   return(
     <React.Fragment>
       <h3>Survey List</h3>
@@ -17,6 +18,7 @@ const SurveyList = ({onSurveySelect, surveyList}) => {
 }
 
 SurveyList.propTypes = {
-  surveyList: PropTypes.array
+  surveyList: PropTypes.array,
+  onSurveySelect: PropTypes.func
 }
 export default SurveyList;

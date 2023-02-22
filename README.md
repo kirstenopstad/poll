@@ -56,7 +56,8 @@ Challenging: Try using a library like D3 to visualize data from surveys. This is
         * UpdateSurvey.js
         * CreateSurvey.js
 3. ✅ Build Static Components
-4. Add State
+4. ✅ Add State for conditional rendering
+5. ✅ Add firebase
 5. Style
 
 <!-- [x] Screenshots
@@ -66,7 +67,7 @@ Challenging: Try using a library like D3 to visualize data from surveys. This is
 <!-- [Link to operational site](http://www.kirstenopstad.github.com/<REPOSITORY NAME>) -->
 
 ### Goals
-1. Meet MVP
+1. ✅ Meet MVP
 2. Add combined results (average if rating)
 3. Add visualization with D3
 

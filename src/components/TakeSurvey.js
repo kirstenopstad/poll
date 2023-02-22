@@ -1,13 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 } from 'uuid';
 
-const TakeSurvey = ({survey}) => {
+const TakeSurvey = ({survey, onSurveySubmit}) => {
+  const { name, description, id, options } = survey;
+  
+  const handleSurveySubmission = (e) => {
+    e.preventDefault();
+    onSurveySubmit({
+      questionId: id, 
+      answer: e.target.answer.value,
+    })
+    }
+
   return(
     <React.Fragment>
-      <h3>{survey.name}</h3>
-      <h3>{survey.description}</h3>
-      <p>eventually takes user input</p>
-      <form>
+      <h3>{name}</h3>
+      <h3>{description}</h3>
+      <form onSubmit={handleSurveySubmission}>
+        {Object.values(options).map((option, index) => 
+          <React.Fragment>
+            <input type="radio" name="answer" id={option} value={Object.keys(options)[index]} />
+            <label>{option}</label>
+          </React.Fragment>
+          )}
         <button type="submit">Submit</button>
       </form>
     </React.Fragment>
