@@ -3,23 +3,26 @@ import PropTypes from 'prop-types'
 
 
 const UserSurvey = ({ whenClicked, survey, results}) => {
-  const [surveyResults, setSurveyResults] = useState(results);
+  // const [surveyResults, setSurveyResults] = useState(results);
 
   const { name, options, id } = survey;
 
+  
   // filtered results containt only results pertaining to this survey
-  const filteredResults = Object.values(results).filter(result => result.questionId === id);
+  const filteredResults = results.filter(result => result.questionId === id);
+
   
   // init empty results array
   let tallies = [];
-
+  
   // for each option key (1, 2, 3, 4), calculate how answer tally
   let optionKeys = Object.keys(options);
   let optionValues = Object.values(options);
 
+
   Object.entries(options).forEach((entry, index) => {
     // get answer id
-    let answerId = parseInt(optionKeys[index]);
+    let answerId = optionKeys[index];
     // filter results where answer is equal to key
     let tally = filteredResults.filter(a => a.answer === answerId).length
     tallies.push(tally)
@@ -38,7 +41,7 @@ const UserSurvey = ({ whenClicked, survey, results}) => {
 
 UserSurvey.propTypes = {
   survey: PropTypes.object,
-  results: PropTypes.object,
+  results: PropTypes.array,
   whenClicked: PropTypes.func
 }
 

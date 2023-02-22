@@ -13,7 +13,7 @@ const TakeSurveyControl = () => {
   // slices of state
   const [takingSurvey, setTakingSurvey] = useState(false);
   const [selectedSurvey, setSelectedSurvey] = useState(null);
-  const [resultList, setResultList] = useState([]); // TODO: refactor for firebase
+  const [resultList, setResultList] = useState([]);
   const [surveyList, setSurveyList] = useState([]);
   const [error, setError] = useState(null);
 
@@ -54,7 +54,6 @@ const TakeSurveyControl = () => {
             id: doc.id
           })
         })
-        console.log(results)
         setResultList(results);
       }, 
       (error) => {
@@ -86,8 +85,6 @@ const TakeSurveyControl = () => {
   }
   return(
     <React.Fragment>
-      {console.log("in contol:")}
-      {console.log(surveyList)}
       <h1>TakeSurveyControl</h1>
       <SurveyList surveyList={surveyList} onSurveySelect={handleSelect}/>
       {surveyBeingTaken}

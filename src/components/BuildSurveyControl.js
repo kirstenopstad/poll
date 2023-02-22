@@ -7,15 +7,16 @@ import PropTypes from "prop-types";
 import { db } from './../firebase'
 import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 
-const BuildSurveyControl = ({resultList}) => {
+const BuildSurveyControl = ({}) => {
   // variable state
   const [selectedSurvey, setSelectedSurvey] = useState(null);
   const [isEditing, setEditingStatus] = useState(false);
   const [isCreating, setCreatingStatus] = useState(false);
+  const [resultList, setResultList] = useState([]);
   const [surveyList, setSurveyList] = useState([]);
   const [error, setError] = useState(null);
 
-  // use effects
+  // GET surveyList from db
   useEffect(() => { 
     const unSubscribe = onSnapshot(
       collection(db, "surveys"), 
@@ -28,6 +29,28 @@ const BuildSurveyControl = ({resultList}) => {
           })
         })
         setSurveyList(surveys);
+      }, 
+      (error) => {
+        setError(error.message);
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
+
+  // GET ResultList from db, update whenever it changes
+  useEffect(() => { 
+    const unSubscribe = onSnapshot(
+      collection(db, "results"), 
+      (collectionSnapshot) => {
+        const results = [];
+        collectionSnapshot.forEach((doc) => {
+          results.push({
+            ...doc.data(),
+            id: doc.id
+          })
+        })
+        setResultList(results);
       }, 
       (error) => {
         setError(error.message);
@@ -63,8 +86,6 @@ const BuildSurveyControl = ({resultList}) => {
   const handleUpdateSurvey = async ( editedSurvey ) => {
     // get survey to edit from db
     const refSurvey = doc(db, "surveys", editedSurvey.id);
-    console.log(refSurvey);
-    console.log(editedSurvey);
     // update ref
     await updateDoc(refSurvey, editedSurvey);
     setSelectedSurvey(editedSurvey);
