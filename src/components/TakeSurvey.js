@@ -18,7 +18,6 @@ const TakeSurvey = ({survey, onSurveySubmit}) => {
     <React.Fragment>
       <h3>{name}</h3>
       <h3>{description}</h3>
-      <p>eventually takes user input</p>
       <form onSubmit={handleSurveySubmission}>
         {Object.values(options).map((option, index) => 
           <React.Fragment>

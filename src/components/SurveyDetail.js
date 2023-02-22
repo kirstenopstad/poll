@@ -14,7 +14,6 @@ const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
         <li>{options[3]}</li>
         <li>{options[4]}</li>
       </ul>
-      <p>eventually results</p>
       <button onClick={onUpdateClick}>Update</button>
       <button onClick={() => onDeleteClick(id)}>Delete</button>
     </React.Fragment>
