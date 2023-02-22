@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import PropTypes from 'prop-types'
 
 
-
-const UserSurvey = ({ whenClicked, survey, resultSeedData}) => {
-  const [surveyResults, setSurveyResults] = useState(resultSeedData);
+const UserSurvey = ({ whenClicked, survey, results}) => {
+  const [surveyResults, setSurveyResults] = useState(results);
 
   const { name, options, id } = survey;
 
   // filtered results containt only results pertaining to this survey
-  const filteredResults = Object.values(resultSeedData).filter(result => result.questionId === id);
+  const filteredResults = Object.values(results).filter(result => result.questionId === id);
   
   // init empty results array
-  let results = [];
+  let tallies = [];
 
   // for each option key (1, 2, 3, 4), calculate how answer tally
   let optionKeys = Object.keys(options);
@@ -23,7 +22,7 @@ const UserSurvey = ({ whenClicked, survey, resultSeedData}) => {
     let answerId = parseInt(optionKeys[index]);
     // filter results where answer is equal to key
     let tally = filteredResults.filter(a => a.answer === answerId).length
-    results.push(tally)
+    tallies.push(tally)
   })
 
   return(
@@ -31,7 +30,7 @@ const UserSurvey = ({ whenClicked, survey, resultSeedData}) => {
       <h4 onClick={() => whenClicked(id)}>{name}</h4>
       <h5>Results</h5>
       {optionValues.map((entry, index) => 
-        <li>{entry}: {results[index]} votes</li>
+        <li key={index}>{entry}: {tallies[index]} votes</li>
       )}
     </React.Fragment>
   );
@@ -39,7 +38,7 @@ const UserSurvey = ({ whenClicked, survey, resultSeedData}) => {
 
 UserSurvey.propTypes = {
   survey: PropTypes.object,
-  resultSeedData: PropTypes.object,
+  results: PropTypes.object,
   whenClicked: PropTypes.func
 }
 

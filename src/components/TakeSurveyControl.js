@@ -21,11 +21,18 @@ const TakeSurveyControl = ({surveyList}) => {
     setTakingSurvey(true);
   }
 
+  // Add functionality to record survey result
+  const handleRecordResult = (result) => {
+    
+    const newResultList = Object.values(resultList).concat(result);
+    setResultList(newResultList)
+  }
+
   let surveyBeingTaken = null;
 
   // if takingSurvey is true, survey for user to take
   if (takingSurvey) {
-    surveyBeingTaken = <TakeSurvey survey={selectedSurvey}/>
+    surveyBeingTaken = <TakeSurvey survey={selectedSurvey} onSurveySubmit={handleRecordResult}/>
   }
   return(
     <React.Fragment>

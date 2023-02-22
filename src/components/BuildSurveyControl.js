@@ -4,15 +4,15 @@ import SurveyDetail from "./SurveyDetail";
 import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
 import PropTypes from "prop-types";
-// import db from './../firebase'
-// import { collection, addDoc } from "firebase/firestore";
+import { db } from './../firebase'
+import { collection, addDoc, doc } from "firebase/firestore";
 
-const BuildSurveyControl = ({surveyList}) => {
+const BuildSurveyControl = ({surveyList, resultList}) => {
   // variable state
   const [selectedSurvey, setSelectedSurvey] = useState(null);
   const [isEditing, setEditingStatus] = useState(false);
   const [isCreating, setCreatingStatus] = useState(false);
-  // temporarily use state to test that I can add / update / delete
+
   // pass in seedData
   const [allSurveys, setAllSurveys] = useState(surveyList);
 
@@ -31,9 +31,9 @@ const BuildSurveyControl = ({surveyList}) => {
   }
 
   // CREATE
-  const handleCreateForm = (newSurvey) => {
-    const newSurveyList = allSurveys.concat(newSurvey);
-    setAllSurveys(newSurveyList);
+  const handleCreateForm = async (newSurvey) => {
+    const surveyCollectionRef = collection(db, "surveys");
+    await addDoc(surveyCollectionRef, newSurvey);
     setCreatingStatus(false);
   }
 
@@ -72,7 +72,11 @@ const BuildSurveyControl = ({surveyList}) => {
   return(
     <React.Fragment>
       <h1>BuildSurveyControl</h1>
-      <Dashboard surveyList={allSurveys} onSurveySelect={handleDetailSelection} onCreateClick={handleDisplayCreateForm}/>
+      <Dashboard 
+        surveyList={allSurveys} 
+        resultList={resultList} 
+        onSurveySelect={handleDetailSelection} 
+        onCreateClick={handleDisplayCreateForm} />
       {detail}
     </React.Fragment>
   );

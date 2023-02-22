@@ -1,21 +1,23 @@
 import React from "react";
 import UserSurvey from "./UserSurvey";
 import PropTypes from "prop-types";
-import resultSeedData from "../resultSeedData";
+// import resultSeedData from "../resultSeedData";
 
-const Dashboard = ({surveyList, onSurveySelect, onCreateClick}) => {
+const Dashboard = ({surveyList, resultList, onSurveySelect, onCreateClick}) => {
   // filter where author is KO
-  const filteredList = surveyList.filter(survey => survey.author === "ko");
+  // TODO: refactor to filter by user
+  // const filteredList = surveyList.filter(survey => survey.author === "ko");
   
   return(
     <React.Fragment>
       <h3>Dashboard</h3>
-      {filteredList.map(survey => 
+      {/* TODO: make this filtered by user */}
+      {surveyList.map(survey => 
           <UserSurvey 
             key={survey.id}
             whenClicked={onSurveySelect}
             survey={survey}
-            resultSeedData={resultSeedData}/>
+            results={resultList}/>
       )}
       <button onClick={onCreateClick}>Create Survey</button>
     </React.Fragment>

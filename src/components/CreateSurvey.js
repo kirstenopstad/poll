@@ -15,7 +15,6 @@ const CreateSurvey = ({ onSubmitClick }) => {
         3: e.target.option3.value,
         4: e.target.option4.value
       },
-      id: v4()
     })
   }
   return(
