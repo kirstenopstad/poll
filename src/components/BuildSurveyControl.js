@@ -5,7 +5,7 @@ import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
 import PropTypes from "prop-types";
 import { db } from './../firebase'
-import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc } from "firebase/firestore";
 
 const BuildSurveyControl = ({}) => {
   // variable state
@@ -93,10 +93,12 @@ const BuildSurveyControl = ({}) => {
   }
 
   // DELETE
-  const handleDeleteSurvey = (id) => {
-    const newSurveyList = surveyList
-      .filter(survey => survey.id != id);
-    setSurveyList(newSurveyList);
+  const handleDeleteSurvey = async (id) => {
+    // get survey to delete
+    const refSurvey = doc(db, "surveys", id)
+    // delete doc
+    await deleteDoc(refSurvey)
+    
     setSelectedSurvey(null);
   }
 
