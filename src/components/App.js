@@ -1,27 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Header from './Header';
 import TakeSurveyControl from './TakeSurveyControl';
 import BuildSurveyControl from './BuildSurveyControl';
-// import surveys from './../seedData';
-// import results from './../resultSeedData';
+import SignInControl from './SignInControl';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { collection, onSnapshot } from "firebase/firestore";
-// import { db } from './../firebase.js'
+import { auth } from "./../firebase.js";
+import { signOut } from "firebase/auth";
 
 
 function App() {
+  const [signOutSuccess, setSignOutSuccess] = useState(null);
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        setSignOutSuccess("You have successfully logged out!");
+      })
+      .catch((error) => {
+        setSignOutSuccess(`There was an error signing out: ${error.message}`)
+      })
+  }
+
+  // TODO: pass signOutSuccess msg as props to SignIn
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header onSignOut={handleSignOut}/>
         <Routes>
           <Route path="/take" element={<TakeSurveyControl/>} />
-          <Route path="/build" element={<BuildSurveyControl />} />
+          <Route path="/build" element={<BuildSurveyControl />}/>
+          <Route path="/login" element={<SignInControl />}/>
         </Routes>
-        
-        
       </div>
     </Router>
   );

@@ -25,8 +25,8 @@ Create an application that allows a user to complete a quiz or survey. Users sho
 ### Objectives (MVP)
 
 The application should have the following functionality:
-* A user should be able to create, update and delete a survey. All surveys should be stored in the database.
-* A user should be able to fill out and submit surveys. Survey results should be submitted to the database. (A survey result can be associated to a survey by mimicking a one-to-many relationship.)
+* ✅ A user should be able to create, update and delete a survey. All surveys should be stored in the database.
+* ✅ A user should be able to fill out and submit surveys. Survey results should be submitted to the database. (A survey result can be associated to a survey by mimicking a one-to-many relationship.)
 * A user should be able to sign up, sign in, and sign out.
 * A user should have their own dashboard which lists the surveys they've created.
 

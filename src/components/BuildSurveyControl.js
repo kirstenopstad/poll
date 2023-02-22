@@ -4,7 +4,7 @@ import SurveyDetail from "./SurveyDetail";
 import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
 import PropTypes from "prop-types";
-import { db } from './../firebase'
+import { db, auth } from './../firebase'
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc } from "firebase/firestore";
 
 const BuildSurveyControl = ({}) => {
@@ -116,8 +116,17 @@ const BuildSurveyControl = ({}) => {
       onDeleteClick={handleDeleteSurvey}/>
   }
 
-  return(
-    <React.Fragment>
+  
+  if (auth.currentUser == null) {
+    return (
+      <React.Fragment>
+        <h1>You must be signed in to access to build surveys!</h1>
+      </React.Fragment>
+    )
+  } else if (auth.currentUser != null) {
+
+    return(
+      <React.Fragment>
       <h1>BuildSurveyControl</h1>
       <Dashboard 
         surveyList={surveyList} 
@@ -126,7 +135,8 @@ const BuildSurveyControl = ({}) => {
         onCreateClick={handleDisplayCreateForm} />
       {detail}
     </React.Fragment>
-  );
+    );
+  }
 }
 
 BuildSurveyControl.propTypes = {

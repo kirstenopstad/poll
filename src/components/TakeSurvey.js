@@ -19,10 +19,10 @@ const TakeSurvey = ({survey, onSurveySubmit}) => {
       <h3>{description}</h3>
       <form onSubmit={handleSurveySubmission}>
         {Object.values(options).map((option, index) => 
-          <React.Fragment>
+          <div key={index}>
             <input type="radio" name="answer" id={option} value={Object.keys(options)[index]} />
             <label>{option}</label>
-          </React.Fragment>
+          </div>
           )}
         <button type="submit">Submit</button>
       </form>

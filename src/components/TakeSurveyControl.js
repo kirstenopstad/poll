@@ -31,7 +31,6 @@ const TakeSurveyControl = () => {
             id: doc.id
           })
         })
-        console.log(surveys)
         setSurveyList(surveys);
       }, 
       (error) => {
