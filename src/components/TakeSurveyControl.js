@@ -2,17 +2,68 @@ import React from "react";
 import SurveyList from "./SurveyList";
 import TakeSurvey from "./TakeSurvey";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import resultSeedData from "../resultSeedData";
+import { useState, useEffect } from "react";
+import { db } from './../firebase'
+import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 // TODO: Add functionality to store results
 // Seed result data
 
-const TakeSurveyControl = ({surveyList}) => {
+const TakeSurveyControl = () => {
   // slices of state
   const [takingSurvey, setTakingSurvey] = useState(false);
   const [selectedSurvey, setSelectedSurvey] = useState(null);
-  const [resultList, setResultList] = useState(resultSeedData);
+  const [resultList, setResultList] = useState([]); // TODO: refactor for firebase
+  const [surveyList, setSurveyList] = useState([]);
+  const [error, setError] = useState(null);
+
+  // use effects
+
+  // GET SurveyList from db, update whenever it changes
+  useEffect(() => { 
+    const unSubscribe = onSnapshot(
+      collection(db, "surveys"), 
+      (collectionSnapshot) => {
+        const surveys = [];
+        collectionSnapshot.forEach((doc) => {
+          surveys.push({
+            ...doc.data(),
+            id: doc.id
+          })
+        })
+        console.log(surveys)
+        setSurveyList(surveys);
+      }, 
+      (error) => {
+        setError(error.message);
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
+  
+  // GET ResultList from db, update whenever it changes
+  useEffect(() => { 
+    const unSubscribe = onSnapshot(
+      collection(db, "results"), 
+      (collectionSnapshot) => {
+        const results = [];
+        collectionSnapshot.forEach((doc) => {
+          results.push({
+            ...doc.data(),
+            id: doc.id
+          })
+        })
+        console.log(results)
+        setResultList(results);
+      }, 
+      (error) => {
+        setError(error.message);
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
 
   // functions
   const handleSelect = (id) => {
@@ -22,10 +73,9 @@ const TakeSurveyControl = ({surveyList}) => {
   }
 
   // Add functionality to record survey result
-  const handleRecordResult = (result) => {
-    
-    const newResultList = Object.values(resultList).concat(result);
-    setResultList(newResultList)
+  const handleRecordResult = async (result) => {
+    const resultCollectionRef = collection(db, "results");
+    await addDoc(resultCollectionRef, result)
   }
 
   let surveyBeingTaken = null;
@@ -36,6 +86,8 @@ const TakeSurveyControl = ({surveyList}) => {
   }
   return(
     <React.Fragment>
+      {console.log("in contol:")}
+      {console.log(surveyList)}
       <h1>TakeSurveyControl</h1>
       <SurveyList surveyList={surveyList} onSurveySelect={handleSelect}/>
       {surveyBeingTaken}
@@ -43,7 +95,7 @@ const TakeSurveyControl = ({surveyList}) => {
   );
 }
 
-TakeSurveyControl.propTypes = {
-  surveyList: PropTypes.array
-}
+// TakeSurveyControl.propTypes = {
+// }
+
 export default TakeSurveyControl;

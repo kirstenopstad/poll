@@ -16,8 +16,8 @@ const Dashboard = ({surveyList, resultList, onSurveySelect, onCreateClick}) => {
           <UserSurvey 
             key={survey.id}
             whenClicked={onSurveySelect}
-            survey={survey}
-            results={resultList}/>
+            survey={survey} />
+            // results={resultList}/>
       )}
       <button onClick={onCreateClick}>Create Survey</button>
     </React.Fragment>

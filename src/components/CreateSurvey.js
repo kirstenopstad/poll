@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 } from 'uuid';
 import PropTypes from "prop-types"
 
 const CreateSurvey = ({ onSubmitClick }) => {
@@ -14,7 +13,7 @@ const CreateSurvey = ({ onSubmitClick }) => {
         2: e.target.option2.value,
         3: e.target.option3.value,
         4: e.target.option4.value
-      },
+      }
     })
   }
   return(

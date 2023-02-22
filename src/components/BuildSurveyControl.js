@@ -1,20 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import SurveyDetail from "./SurveyDetail";
 import UpdateSurvey from "./UpdateSurvey";
 import CreateSurvey from "./CreateSurvey";
 import PropTypes from "prop-types";
 import { db } from './../firebase'
-import { collection, addDoc, doc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 
-const BuildSurveyControl = ({surveyList, resultList}) => {
+const BuildSurveyControl = ({resultList}) => {
   // variable state
   const [selectedSurvey, setSelectedSurvey] = useState(null);
   const [isEditing, setEditingStatus] = useState(false);
   const [isCreating, setCreatingStatus] = useState(false);
+  const [surveyList, setSurveyList] = useState([]);
+  const [error, setError] = useState(null);
 
-  // pass in seedData
-  const [allSurveys, setAllSurveys] = useState(surveyList);
+  // use effects
+  useEffect(() => { 
+    const unSubscribe = onSnapshot(
+      collection(db, "surveys"), 
+      (collectionSnapshot) => {
+        const surveys = [];
+        collectionSnapshot.forEach((doc) => {
+          surveys.push({
+            ...doc.data(),
+            id: doc.id
+          })
+        })
+        setSurveyList(surveys);
+      }, 
+      (error) => {
+        setError(error.message);
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
 
   // functions 
   const handleDetailSelection = (id) => {
@@ -38,20 +59,23 @@ const BuildSurveyControl = ({surveyList, resultList}) => {
   }
 
   // UPDATE
-  const handleUpdateSurvey = ( editedSurvey ) => {
-    const editedList = allSurveys
-      .filter(survey => survey.id === editedSurvey.id)
-      .concat(editedSurvey);
-    setAllSurveys(editedList);
+  // because we have to go to the db, it's async
+  const handleUpdateSurvey = async ( editedSurvey ) => {
+    // get survey to edit from db
+    const refSurvey = doc(db, "surveys", editedSurvey.id);
+    console.log(refSurvey);
+    console.log(editedSurvey);
+    // update ref
+    await updateDoc(refSurvey, editedSurvey);
     setSelectedSurvey(editedSurvey);
     setEditingStatus(false);
   }
 
   // DELETE
   const handleDeleteSurvey = (id) => {
-    const newSurveyList = allSurveys
+    const newSurveyList = surveyList
       .filter(survey => survey.id != id);
-    setAllSurveys(newSurveyList);
+    setSurveyList(newSurveyList);
     setSelectedSurvey(null);
   }
 
@@ -73,7 +97,7 @@ const BuildSurveyControl = ({surveyList, resultList}) => {
     <React.Fragment>
       <h1>BuildSurveyControl</h1>
       <Dashboard 
-        surveyList={allSurveys} 
+        surveyList={surveyList} 
         resultList={resultList} 
         onSurveySelect={handleDetailSelection} 
         onCreateClick={handleDisplayCreateForm} />

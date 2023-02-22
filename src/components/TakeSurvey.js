@@ -10,7 +10,6 @@ const TakeSurvey = ({survey, onSurveySubmit}) => {
     onSurveySubmit({
       questionId: id, 
       answer: e.target.answer.value,
-      id: v4()
     })
     }
 
