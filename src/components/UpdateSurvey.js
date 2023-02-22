@@ -13,13 +13,14 @@ const UpdateSurvey = ({selectedSurvey, onSubmitUpdate}) => {
       // if there's a user-inputted value, use it, else use original value
       name: (e.target.name.value) ? (e.target.name.value) : name, 
       description: (e.target.description.value) ? e.target.description.value : description,
-      author: (e.target.author.value) ? e.target.description.value : {description},
+      author: (e.target.author.value) ? e.target.description.value : author,
       options: {
         1: (e.target.option1.value) ? e.target.option1.value : options[1],
         2: (e.target.option2.value) ? e.target.option2.value : options[2],
         3: (e.target.option3.value) ? e.target.option3.value : options[3],
         4: (e.target.option4.value) ? e.target.option4.value : options[4]
-      }
+      },
+      id: id
     })
   }
 
