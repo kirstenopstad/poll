@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types'
+import Button from 'react-bootstrap/Button';
 
 const Survey = ({ whenSelected, survey}) => {
   const { name, id } = survey;
   return(
     <React.Fragment>
-      <h4 onClick={() => whenSelected(id)}>{name}</h4>
+      <Button onClick={() => whenSelected(id)}>{name}</Button>
     </React.Fragment>
   );
 }
