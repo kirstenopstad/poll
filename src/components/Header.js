@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import PropTypes from 'prop-types'
+import Nav from 'react-bootstrap/Nav';
+ 
 
 const Header = ({ onSignOut }) => {
 
@@ -11,13 +13,32 @@ const Header = ({ onSignOut }) => {
 
   return(
     <React.Fragment>
-      <h1>Poll</h1>
-      <Link to="/build">Build</Link>
-      <br/>
-      <Link to="/take">Take</Link>
-      <br/>
-      <Link to="/login">Login / Register</Link>
-      <h2 onClick={handleLogOut}>Logout</h2>
+      <Nav className="justify-content-center">
+      <Nav.Item>
+        <Nav.Link as="li">Poll</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as="li">
+          <Link to="/build">Build</Link>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as="li">
+          <Link to="/take">Take</Link>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as="li">
+          <Link to="/login">Login / Register</Link>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as="li" onClick={handleLogOut}>
+          Logout
+        </Nav.Link>
+      </Nav.Item>
+
+      </Nav>
     </React.Fragment>
   );
 }

@@ -27,8 +27,8 @@ Create an application that allows a user to complete a quiz or survey. Users sho
 The application should have the following functionality:
 * ✅ A user should be able to create, update and delete a survey. All surveys should be stored in the database.
 * ✅ A user should be able to fill out and submit surveys. Survey results should be submitted to the database. (A survey result can be associated to a survey by mimicking a one-to-many relationship.)
-* A user should be able to sign up, sign in, and sign out.
-* A user should have their own dashboard which lists the surveys they've created.
+* ✅ A user should be able to sign up, sign in, and sign out.
+* ✅ A user should have their own dashboard which lists the surveys they've created.
 
 __Further Exploration__
 Bonus: A user should be able to see the combined data on a survey in their dashboard. For instance, if a survey provides a 1-5 rating, return an average rating for all surveys.

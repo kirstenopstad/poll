@@ -127,7 +127,6 @@ const BuildSurveyControl = ({}) => {
 
     return(
       <React.Fragment>
-      <h1>BuildSurveyControl</h1>
       <Dashboard 
         surveyList={surveyList} 
         resultList={resultList} 

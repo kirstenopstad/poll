@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { auth } from "./../firebase.js";
 import { signOut } from "firebase/auth";
-
+import Container from 'react-bootstrap/Container';
 
 function App() {
   const [signOutSuccess, setSignOutSuccess] = useState(null);
@@ -27,14 +27,16 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Header onSignOut={handleSignOut}/>
-        <Routes>
-          <Route path="/take" element={<TakeSurveyControl/>} />
-          <Route path="/build" element={<BuildSurveyControl />}/>
-          <Route path="/login" element={<SignInControl />}/>
-        </Routes>
-      </div>
+      <Container>
+        <div className="App">
+          <Header onSignOut={handleSignOut}/>
+          <Routes>
+            <Route path="/take" element={<TakeSurveyControl/>} />
+            <Route path="/build" element={<BuildSurveyControl />}/>
+            <Route path="/login" element={<SignInControl />}/>
+          </Routes>
+        </div>
+      </Container>
     </Router>
   );
 }

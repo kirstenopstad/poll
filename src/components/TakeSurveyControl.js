@@ -84,7 +84,8 @@ const TakeSurveyControl = () => {
   }
   return(
     <React.Fragment>
-      <h1>TakeSurveyControl</h1>
+      <h1>Take A Survey</h1>
+      <p>Click on a survey you'd like to complete.</p>
       <SurveyList surveyList={surveyList} onSurveySelect={handleSelect}/>
       {surveyBeingTaken}
     </React.Fragment>

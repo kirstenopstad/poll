@@ -1,21 +1,29 @@
 import React from "react";
 import Survey from "./Survey";
 import PropTypes from "prop-types"
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
   const { name, description, options, id } = selectedSurvey
   return(
     <React.Fragment>
+      <br/>
+      <h2>Survey Detail</h2>
       <h3>{name}</h3>
       <p>{description}</p>
-      <ul> options
+      <ListGroup>
         <li>{options[1]}</li>
         <li>{options[2]}</li>
         <li>{options[3]}</li>
         <li>{options[4]}</li>
-      </ul>
-      <button onClick={onUpdateClick}>Update</button>
-      <button onClick={() => onDeleteClick(id)}>Delete</button>
+      </ListGroup>
+      <br/>
+      <Button onClick={onUpdateClick}>Update</Button>
+      <br/>
+      <br/>
+      <Button onClick={() => onDeleteClick(id)}>Delete</Button>
     </React.Fragment>
   );
 }
