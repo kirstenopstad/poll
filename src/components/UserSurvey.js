@@ -43,7 +43,7 @@ const UserSurvey = ({ whenClicked, survey, results}) => {
             <li key={index}>{entry}: {tallies[index]} votes</li>
           )}
         </Card.Text>
-        <Button onClick={() => whenClicked(id)}>Details</Button>
+        <Button onClick={() => whenClicked(id)} variant="secondary">Details</Button>
       </Card.Body>
     </Card>
 
