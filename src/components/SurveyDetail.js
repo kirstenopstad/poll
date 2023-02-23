@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
+
 const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
   const { name, description, options, id } = selectedSurvey
   return(
