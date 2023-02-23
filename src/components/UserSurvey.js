@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types'
-
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const UserSurvey = ({ whenClicked, survey, results}) => {
   // const [surveyResults, setSurveyResults] = useState(results);
@@ -30,11 +31,22 @@ const UserSurvey = ({ whenClicked, survey, results}) => {
 
   return(
     <React.Fragment>
-      <h4 onClick={() => whenClicked(id)}>{name}</h4>
-      <h5>Results</h5>
-      {optionValues.map((entry, index) => 
-        <li key={index}>{entry}: {tallies[index]} votes</li>
-      )}
+      <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>
+          <h4 >{name}</h4>
+        </Card.Title>
+        {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
+        <Card.Text>
+          <h5>Current Results</h5>
+          {optionValues.map((entry, index) => 
+            <li key={index}>{entry}: {tallies[index]} votes</li>
+          )}
+        </Card.Text>
+        <Button onClick={() => whenClicked(id)} variant="secondary">Details</Button>
+      </Card.Body>
+    </Card>
+
     </React.Fragment>
   );
 }

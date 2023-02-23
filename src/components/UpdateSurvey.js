@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types"
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const UpdateSurvey = ({selectedSurvey, onSubmitUpdate}) => {
   const { id, name, description, author, options } = selectedSurvey
@@ -26,45 +28,74 @@ const UpdateSurvey = ({selectedSurvey, onSubmitUpdate}) => {
 
   return(
     <React.Fragment>
+      <br />
       <h3>Update Survey | {name}</h3>
-      <form onSubmit={handleUpdateSurveySubmission}>
-        <input 
-          type="text"
-          name="name"
-          placeholder={name}
-        />
-        <input 
-          type="text"
-          name="description"
-          placeholder={description}
-        />
-        <input 
-          type="text"
-          name="author"
-          placeholder={author}
-        />
-        <input 
-          type="text"
-          name="option1"
-          placeholder={options[1]}
-        />
-        <input 
-          type="text"
-          name="option2"
-          placeholder={options[2]}
-        />
-        <input 
-          type="text"
-          name="option3"
-          placeholder={options[3]}
-        />
-        <input 
-          type="text"
-          name="option4"
-          placeholder={options[4]}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <Form onSubmit={handleUpdateSurveySubmission}>
+        <Form.Group className="mb-3" controlId="name">
+          <Form.Label>Survey Title</Form.Label>
+          <Form.Control 
+            type="text"
+            name="name"
+            placeholder={name}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="description">
+          <Form.Label>Description</Form.Label>
+          <Form.Control 
+            type="text"
+            name="description"
+            placeholder={description}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="author">
+          <Form.Label>Author Initials</Form.Label>
+          <Form.Control 
+            type="text"
+            name="author"
+            placeholder={author}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="option1">
+          <Form.Label>Option 1</Form.Label>
+          <Form.Control 
+            type="text"
+            name="option1"
+            placeholder={options[1]}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="option2">
+          <Form.Label>Option 2</Form.Label>
+          <Form.Control 
+            type="text"
+            name="option2"
+            placeholder={options[2]}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="option3">
+          <Form.Label>Option 3</Form.Label>
+          <Form.Control 
+            type="text"
+            name="option3"
+            placeholder={options[3]}
+          />
+
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="option4">
+          <Form.Label>Option 4</Form.Label>
+          <Form.Control 
+            type="text"
+            name="option4"
+            placeholder={options[4]}
+          />
+
+        </Form.Group>
+        <Button type="submit">Save Changes</Button>
+      </Form>
     </React.Fragment>
   );
 }

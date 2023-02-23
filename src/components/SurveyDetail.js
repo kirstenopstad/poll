@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
+
 const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
   const { name, description, options, id } = selectedSurvey
   return(
@@ -20,10 +21,10 @@ const SurveyDetail = ({selectedSurvey, onUpdateClick, onDeleteClick}) => {
         <li>{options[4]}</li>
       </ListGroup>
       <br/>
-      <Button onClick={onUpdateClick}>Update</Button>
-      <br/>
-      <br/>
-      <Button onClick={() => onDeleteClick(id)}>Delete</Button>
+      <div className="button-row">
+        <Button onClick={onUpdateClick} variant="success">Update</Button>
+        <Button onClick={() => onDeleteClick(id)} variant="danger">Delete</Button>
+      </div>
     </React.Fragment>
   );
 }

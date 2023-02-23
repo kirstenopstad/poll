@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 
 const TakeSurvey = ({survey, onSurveySubmit}) => {
   const { name, description, id, options } = survey;
@@ -15,17 +18,23 @@ const TakeSurvey = ({survey, onSurveySubmit}) => {
 
   return(
     <React.Fragment>
-      <h3>{name}</h3>
-      <h3>{description}</h3>
-      <form onSubmit={handleSurveySubmission}>
+      <br />
+      <h4>{name}</h4>
+      <p>{description}</p>
+      <Form onSubmit={handleSurveySubmission}>
         {Object.values(options).map((option, index) => 
-          <div key={index}>
-            <input type="radio" name="answer" id={option} value={Object.keys(options)[index]} />
-            <label>{option}</label>
+          <div key={`${option}-radio`} className="mb-3" >
+            <Form.Check 
+              type="radio"
+              id={option}
+              label={option}
+              value={Object.keys(options)[index]}
+              name="answer"
+            />
           </div>
           )}
-        <button type="submit">Submit</button>
-      </form>
+        <Button type="submit" variant="success">Submit</Button>
+      </Form>
     </React.Fragment>
   );
 }
