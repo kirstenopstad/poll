@@ -4,7 +4,7 @@
 
 #### A web app for simple polling
 
-<!-- #### [Check out the live site](https://kirstenopstad.github.io/local-business/)! -->
+#### [Check out the live site](https://ko-poll.web.app/)!
 
 ## Technologies Used
 
