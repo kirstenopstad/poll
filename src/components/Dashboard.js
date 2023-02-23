@@ -1,6 +1,7 @@
 import React from "react";
 import UserSurvey from "./UserSurvey";
 import PropTypes from "prop-types";
+import Button from 'react-bootstrap/Button';
 
 const Dashboard = ({surveyList, resultList, onSurveySelect, onCreateClick}) => {
   // filter where author is KO
@@ -18,7 +19,9 @@ const Dashboard = ({surveyList, resultList, onSurveySelect, onCreateClick}) => {
             survey={survey}
             results={resultList}/>
       )}
-      <button onClick={onCreateClick}>Create Survey</button>
+      <br/>
+      <Button onClick={onCreateClick}>Create Survey</Button>
+      <br/>
     </React.Fragment>
   );
 }
